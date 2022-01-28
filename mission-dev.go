@@ -23,6 +23,9 @@ func NewMissionDevStack(scope constructs.Construct, id string, props *MissionDev
 	awseks.NewCluster(stack, jsii.String("MissionDevEks"), &awseks.ClusterProps{
 		Version:     awseks.KubernetesVersion_V1_21(),
 		ClusterName: jsii.String("mission-dev-cluster"),
+		AlbController: &awseks.AlbControllerOptions{
+			Version: awseks.AlbControllerVersion_V2_3_1(),
+		},
 	})
 
 	return stack
