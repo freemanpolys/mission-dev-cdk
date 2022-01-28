@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/aws/aws-cdk-go/awscdk/v2"
+	"github.com/aws/aws-cdk-go/awscdk"
 	// "github.com/aws/aws-cdk-go/awscdk/v2/awssqs"
-	"github.com/aws/constructs-go/constructs/v10"
-	// "github.com/aws/jsii-runtime-go"
+	"github.com/aws/aws-cdk-go/awscdk/awseks"
+	"github.com/aws/constructs-go/constructs/v3"
+	"github.com/aws/jsii-runtime-go"
 )
 
 type MissionDevStackProps struct {
@@ -19,11 +20,10 @@ func NewMissionDevStack(scope constructs.Construct, id string, props *MissionDev
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
 	// The code that defines your stack goes here
-
-	// example resource
-	// queue := awssqs.NewQueue(stack, jsii.String("MissionDevQueue"), &awssqs.QueueProps{
-	// 	VisibilityTimeout: awscdk.Duration_Seconds(jsii.Number(300)),
-	// })
+	awseks.NewCluster(stack, jsii.String("MissionDevEks"), &awseks.ClusterProps{
+		Version:     awseks.KubernetesVersion_V1_21(),
+		ClusterName: jsii.String("mission-dev-cluster"),
+	})
 
 	return stack
 }

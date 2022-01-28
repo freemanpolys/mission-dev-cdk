@@ -12,3 +12,9 @@ about your experience through GitHub issues.
  * `cdk diff`        compare deployed stack with current state
  * `cdk synth`       emits the synthesized CloudFormation template
  * `go test`         run unit tests
+
+## Deploy the stack
+go mod tidy
+cdk bootstrap
+cdk deploy
+cdk destroy
